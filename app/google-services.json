@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "52863237115",
+    "firebase_url": "https://aladino-9eb58.firebaseio.com",
+    "project_id": "aladino-9eb58",
+    "storage_bucket": "aladino-9eb58.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:52863237115:android:2ec4cae4129baeff",
+        "android_client_info": {
+          "package_name": "com.example.ignacio.aladino"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "52863237115-dlbtv0t6sejl2rm2rqnisj7lq26m4cjo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAM1Bc4gEnxL-rGqhkA4LIilK0SGkci9gs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
