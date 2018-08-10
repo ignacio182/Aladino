@@ -11,25 +11,39 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-
-import java.io.IOException;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 
 public class NegocioAdapter extends FirestoreRecyclerAdapter<Negocio, NegocioAdapter.NegocioHolder> {
 
-    public NegocioAdapter(@NonNull FirestoreRecyclerOptions<Negocio> options) {
+    public interface OnNegocioSelectedListener {
+
+        void onNegocioSelected(Negocio negocio);
+
+    }
+
+    private OnNegocioSelectedListener negocioListener;
+
+    public NegocioAdapter(@NonNull FirestoreRecyclerOptions<Negocio> options, OnNegocioSelectedListener listener) {
         super(options);
+        this.negocioListener = listener;
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull NegocioHolder holder, int position, @NonNull Negocio model) {
+    protected void onBindViewHolder(@NonNull NegocioHolder holder, int position, @NonNull final Negocio model) {
 
         Glide.with(holder.logo.getContext())
                 .load(model.getImage())
                 .into(holder.logo);
 
         holder.textViewName.setText(model.getName());
-        //holder.tv2.setText(model.getImage());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                negocioListener.onNegocioSelected(model);
+            }
+        });
     }
 
     @NonNull
@@ -42,7 +56,6 @@ public class NegocioAdapter extends FirestoreRecyclerAdapter<Negocio, NegocioAda
     class NegocioHolder extends RecyclerView.ViewHolder {
 
         TextView textViewName;
-        //ImageView imageViewLogo;
         ImageView logo;
 
         public NegocioHolder(@NonNull View itemView) {
