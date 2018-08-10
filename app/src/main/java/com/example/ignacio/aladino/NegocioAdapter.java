@@ -24,17 +24,12 @@ public class NegocioAdapter extends FirestoreRecyclerAdapter<Negocio, NegocioAda
     @Override
     protected void onBindViewHolder(@NonNull NegocioHolder holder, int position, @NonNull Negocio model) {
 
-        Glide.with(holder.imageViewLogo.getContext())
+        Glide.with(holder.logo.getContext())
                 .load(model.getImage())
-                .into(holder.imageViewLogo);
-        System.out.println(model.getName());
-        try {
-            System.in.read();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+                .into(holder.logo);
 
-        holder.textViewName.setText("putoooooo");
+        holder.textViewName.setText(model.getName());
+        //holder.tv2.setText(model.getImage());
     }
 
     @NonNull
@@ -47,13 +42,13 @@ public class NegocioAdapter extends FirestoreRecyclerAdapter<Negocio, NegocioAda
     class NegocioHolder extends RecyclerView.ViewHolder {
 
         TextView textViewName;
-        ImageView imageViewLogo;
-        //TextView prioridad;
+        //ImageView imageViewLogo;
+        ImageView logo;
 
         public NegocioHolder(@NonNull View itemView) {
             super(itemView);
             textViewName = itemView.findViewById(R.id.textView);
-            imageViewLogo = itemView.findViewById(R.id.imageView);
+            logo = itemView.findViewById(R.id.imageView);
         }
     }
 }
