@@ -1,6 +1,7 @@
 package com.example.ignacio.aladino;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.firebase.ui.firestore.SnapshotParser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -33,7 +35,17 @@ public class MainActivity extends AppCompatActivity implements NegocioAdapter.On
     private void setUpRecyclerView(){
         Query query = negociosRef;
         FirestoreRecyclerOptions<Negocio> options = new FirestoreRecyclerOptions.Builder<Negocio>()
-                .setQuery(query, Negocio.class)
+                .setQuery(query, new SnapshotParser<Negocio>() {
+                    @NonNull
+                    @Override
+                    public Negocio parseSnapshot(@NonNull DocumentSnapshot snapshot) {
+                        Negocio negocio = new Negocio();
+                        negocio.setImage((String) snapshot.get("image"));
+                        negocio.setName((String) snapshot.get("name"));
+                        negocio.setId(snapshot.getId());
+                        return negocio;
+                    }
+                })
                 .build();
         negocioAdapter = new NegocioAdapter(options, this);
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
@@ -59,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements NegocioAdapter.On
     public void onNegocioSelected(Negocio negocio) {
         // Go to the details page for the selected restaurant
         Intent intent = new Intent(this, NegocioDetailActivity.class);
-        intent.putExtra(NegocioDetailActivity.KEY_NEGOCIO_ID, 123);
+        intent.putExtra(NegocioDetailActivity.KEY_NEGOCIO_ID, negocio.getId());
 
         startActivity(intent);
     }

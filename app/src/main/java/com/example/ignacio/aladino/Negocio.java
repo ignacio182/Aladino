@@ -4,10 +4,12 @@ public class Negocio {
     
     private String name;
     private String image;
+    private String id;
 
-    public Negocio(String name, String image) {
+    public Negocio(String name, String image, String id) {
         this.name = name;
         this.image = image;
+        this.id = id;
     }
 
     public Negocio() {
@@ -27,5 +29,13 @@ public class Negocio {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
