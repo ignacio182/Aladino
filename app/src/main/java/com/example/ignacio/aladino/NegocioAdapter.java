@@ -20,6 +20,8 @@ public class NegocioAdapter extends FirestoreRecyclerAdapter<Negocio, NegocioAda
 
     }
 
+
+
     private OnNegocioSelectedListener negocioListener;
 
     public NegocioAdapter(@NonNull FirestoreRecyclerOptions<Negocio> options, OnNegocioSelectedListener listener) {
