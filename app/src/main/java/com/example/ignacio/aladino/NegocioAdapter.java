@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
@@ -30,8 +33,12 @@ public class NegocioAdapter extends FirestoreRecyclerAdapter<Negocio, NegocioAda
     @Override
     protected void onBindViewHolder(@NonNull NegocioHolder holder, int position, @NonNull final Negocio model) {
 
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(16));
+
         Glide.with(holder.logo.getContext())
                 .load(model.getImage())
+                .apply(requestOptions)
                 .into(holder.logo);
 
         holder.textViewName.setText(model.getName());

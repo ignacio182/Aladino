@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
-    android:orientation="vertical"
-    android:padding="8dp">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/textView"
@@ -13,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="76dp"
+        android:layout_marginEnd="55dp"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@android:color/black"
@@ -21,10 +20,15 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="119dp"
-        android:layout_height="122dp"
+        android:layout_width="100dp"
+        android:layout_height="92dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        app:srcCompat="?attr/actionModeShareDrawable" />
+        android:layout_centerVertical="true"
+        android:layout_marginStart="15dp"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:srcCompat="@drawable/food_1" />
 
 </RelativeLayout>
