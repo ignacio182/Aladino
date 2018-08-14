@@ -33,4 +33,18 @@
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/whatsapp_icon" />
 
+    <CheckBox
+        android:id="@+id/likeIcon"
+        android:layout_width="39dp"
+        android:layout_height="41dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/imageButton1"
+        android:layout_marginStart="23dp"
+        android:button="@null"
+        android:checked="false"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/like_icon"
+        android:stateListAnimator="@animator/scale"/>
+
 </RelativeLayout>

@@ -16,7 +16,7 @@ import com.google.firebase.firestore.Query;
 
 public class MainActivity extends AppCompatActivity implements NegocioAdapter.OnNegocioSelectedListener {
 
-    private RecyclerView recView;
+    private RecyclerView recyclerView;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference negociosRef = db.collection("negocios");
     private NegocioAdapter negocioAdapter;
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements NegocioAdapter.On
                 })
                 .build();
         negocioAdapter = new NegocioAdapter(options, this);
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements NegocioAdapter.On
 
     @Override
     public void onNegocioSelected(Negocio negocio) {
-        // Go to the details page for the selected restaurant
         Intent intent = new Intent(this, NegocioDetailActivity.class);
         intent.putExtra(NegocioDetailActivity.KEY_NEGOCIO_ID, negocio.getId());
 
