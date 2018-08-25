@@ -7,19 +7,19 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="140dp"
+        android:id="@+id/name"
+        android:layout_width="111dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="55dp"
-        android:text="TextView"
+        android:layout_alignTop="@+id/photo"
+        android:layout_marginEnd="112dp"
+        android:text="Lo de rosa"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@android:color/black"
         android:textStyle="bold" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/photo"
         android:layout_width="100dp"
         android:layout_height="92dp"
         android:layout_alignParentStart="true"
@@ -30,5 +30,42 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         app:srcCompat="@drawable/food_1" />
+
+    <TextView
+        android:id="@+id/open"
+        android:layout_width="74dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/photo"
+        android:layout_alignStart="@+id/name"
+        android:text="Abierto"
+        android:textColor="@android:color/holo_green_dark"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/name"
+        android:layout_marginEnd="26dp"
+        app:srcCompat="@drawable/ic_thumb_up_blue_24dp" />
+
+    <TextView
+        android:id="@+id/numRecos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/open"
+        android:layout_alignStart="@+id/imageView2"
+        android:text="100k"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/name"
+        android:layout_centerVertical="true"
+        android:text="2 km"
+        android:textStyle="bold|italic" />
 
 </RelativeLayout>

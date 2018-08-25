@@ -1,7 +1,9 @@
 package com.example.ignacio.aladino;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,10 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import org.imperiumlabs.geofirestore.util.GeoUtils;
+import java.text.ParseException;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class NegocioAdapter extends FirestoreRecyclerAdapter<Negocio, NegocioAdapter.NegocioHolder> {
@@ -33,15 +39,25 @@ public class NegocioAdapter extends FirestoreRecyclerAdapter<Negocio, NegocioAda
     @Override
     protected void onBindViewHolder(@NonNull NegocioHolder holder, int position, @NonNull final Negocio model) {
 
-        RequestOptions requestOptions = new RequestOptions();
-        requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(16));
+        Glide.with(holder.photo.getContext())
+                .load(model.getFoto())
+                .apply(new RequestOptions().transforms(new CenterCrop(), new RoundedCorners(20)))
+                .into(holder.photo);
 
-        Glide.with(holder.logo.getContext())
-                .load(model.getImage())
-                .apply(requestOptions)
-                .into(holder.logo);
 
-        holder.textViewName.setText(model.getName());
+        //Double distance = GeoUtils.distance(UserLocation.getLatitud(),UserLocation.getLongitud(),model.getLocalizacion().getLatitude(),model.getLocalizacion().getLongitude());
+        //distance /= 1000;
+        Double distance = 2.50;
+        holder.name.setText(model.getNombre());
+        holder.numRecos.setText(String.valueOf(model.getNumrecos()));
+
+        holder.open.setText(model.getOpenOrClose());
+        if ((model.getOpenOrClose().equals("abierto"))) {
+            holder.open.setTextColor(Color.parseColor("#a4c639"));
+        } else {
+            holder.open.setTextColor(Color.RED);
+        }
+        holder.distance.setText(String.format("%.2f",distance) + " km");
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,13 +76,24 @@ public class NegocioAdapter extends FirestoreRecyclerAdapter<Negocio, NegocioAda
 
     class NegocioHolder extends RecyclerView.ViewHolder {
 
-        TextView textViewName;
-        ImageView logo;
+        @BindView(R.id.name)
+        TextView name;
+
+        @BindView(R.id.photo)
+        ImageView photo;
+
+        @BindView(R.id.open)
+        TextView open;
+
+        @BindView(R.id.distance)
+        TextView distance;
+
+        @BindView(R.id.numRecos)
+        TextView numRecos;
 
         public NegocioHolder(@NonNull View itemView) {
             super(itemView);
-            textViewName = itemView.findViewById(R.id.textView);
-            logo = itemView.findViewById(R.id.imageView);
+            ButterKnife.bind(this,itemView);
         }
     }
 }
